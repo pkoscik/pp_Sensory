@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Create
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+
+jobs:
+  build-pdf-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker-practice/actions-setup-docker@master
+      
+      - name: Download Ghostscript
+        run: |
+          sudo apt install ghostscript
+      
+      - name: Run a compilation script
+        run: |
+          chmod +x make.sh
+          sudo bash make.sh
+          
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: document.pdf
+          path: out_compressed.pdf
