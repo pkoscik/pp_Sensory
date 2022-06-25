@@ -19,6 +19,9 @@ print(80*'-')
 start = time.time()
 index = 0
 
+# create a pdf/ direcotory
+mdir_command = os.system('mkdir pdf/')
+
 # chdir to src folder
 os.chdir('src')
 
@@ -51,9 +54,6 @@ for folder in folders:
     # find .PDF file (if not found throw an exception or smth idk)
     pdf_filename = subprocess.check_output("ls | grep *.pdf", shell=True).decode("utf-8").strip()
     print(f"[info] Created PDF file: {pdf_filename}")
-
-    # create a pdf/ direcotory
-    mdir_command = os.system('mkdir ../../pdf/')
 
     # move created PDF to pdf directory
     copy_command = os.system(f"mv -f {pdf_filename} ../../pdf/{folder}.pdf")
