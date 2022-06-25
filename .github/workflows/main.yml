@@ -19,9 +19,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: docker-practice/actions-setup-docker@master
       
-      - name: Download Ghostscript
+      - name: Download Ghostscript and pdfunite
         run: |
-          sudo apt install ghostscript
+          sudo apt install ghostscript poppler-utils
       
       - name: Run a compilation script
         run: |
