@@ -30,12 +30,12 @@ tex_command = ""
 pdf_filename = ""
 
 for folder in folders:
-    
+
     print(f"[info] Finding .tex file in: {folder}")
 
     # change directory to a selected (current) folder
     os.chdir(f'./{folder}')
-    
+
     # find .TeX file
     try:
         tex_filename = subprocess.check_output("ls | grep *.tex", shell=True).decode("utf-8").strip()
@@ -51,6 +51,9 @@ for folder in folders:
     # find .PDF file (if not found throw an exception or smth idk)
     pdf_filename = subprocess.check_output("ls | grep *.pdf", shell=True).decode("utf-8").strip()
     print(f"[info] Created PDF file: {pdf_filename}")
+
+    # create a pdf/ direcotory
+    mdir_command = os.system('mkdir ../../pdf/')
 
     # move created PDF to pdf directory
     copy_command = os.system(f"mv -f {pdf_filename} ../../pdf/{folder}.pdf")
