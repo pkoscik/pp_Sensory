@@ -1,0 +1,17 @@
+# author:  Patryk Kościk
+# contact: koscikpatryk@gmail.com
+
+Place your projects here, as in, folders in witch .tex files are located.
+
+Project directory naming requirements:
+
+number_name
+
+For example:
+
+0_first-project/
+1_second-project/
+
+The naming scheme is important, beacuse the number chooses the order 
+of the documents in the merging process.
+
