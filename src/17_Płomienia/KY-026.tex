@@ -74,7 +74,7 @@ Omawiany detektor płomieni to moduł, składający się z 4 pinów - masa, +5V,
 \begin{subfigure}{.4\textwidth}
   \centering
   \includegraphics[width=.4\linewidth]{fig/KY-026/zdj_modułu/zdj2.jpg}
-  \caption{Zdjęcie czujnika}
+  \caption{Zdjęcie modułu}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.4\textwidth}
@@ -90,7 +90,7 @@ Omawiany detektor płomieni to moduł, składający się z 4 pinów - masa, +5V,
 
 Wzmacniacz zwiększa amplitudę sygnału z czujnika w zależności od wartości rezystancji ustawionej na \textbf{potencjometrze} i podaje go na \textit{wyjście analogowe} modułu.\\
 Sygnał jest również przesyłany na drugi w układzie scalonym komparator napięć, który podaje stan niski lub wysoki (w zależności od tego czy w otoczeniu czujnika występuje płomień) na \textit{wyjście cyfrowe} modułu oraz \textbf{diodę LD2}. \textbf{Dioda LD1} jest podłączona bezpośrednio do nóżki opisanej +, zatem przekazuje informacje, że moduł jest zasilany. \\
-Potencjometr ma zakres rezystancji od 1 ohm do 85k ohm. Im mniejsza rezystancja tym mniejsza wrażliwość czujnika i co za tym idzie zasięg czujnika.  \\
+Im mniejsza rezystancja potencjometru tym mniejsza wrażliwość czujnika i co za tym idzie zasięg czujnika.  \\
 Wykorzystać można ten moduł w celach edukacyjnych lub hobbistycznych. Nie ma możliwości zastosowania go w przemyśle na przykład jako zabezpieczenia. Ze względu na to, że działa on w oparciu o odbiornik podczerwieni, będzie oprócz płomieni wykrywał inne sygnały w tym spektrum, takie jak z pilota do telewizora czy bramy. 
 
 
@@ -183,13 +183,13 @@ Należy zauważyć, że w przypadku wyjścia cyfrowego występuje stan niski, ki
 \newpage
 
 \section{Prezentacja działania układu}
-W celu zaprezentowania jego działa, zaprogramowano płytkę NUCLEO na 2 sposoby. 
+W celu zaprezentowania jego działania, zaprogramowano płytkę NUCLEO na 2 sposoby:
 \begin{itemize}
     \item z użyciem wyjścia cyfrowego
-    \item z użyciem wyjścia analogowego
+    \item z użyciem wyjścia analogowego.
 \end{itemize}
 
-Kiedy używamy wyjścia cyfrowego, w momencie wykrycia płomienia na płytce zapala się dioda LD1. Kod polega na odczytaniu stanu wysokiego lub nieskiego z pinu GPIO.
+Kiedy używamy wyjścia cyfrowego, w momencie wykrycia płomienia na płytce zapala się dioda LD1. Kod polega na odczytaniu stanu wysokiego lub niskiego z pinu GPIO.
 
 \begin{figure}[h]
 \centering
@@ -210,9 +210,70 @@ Kiedy używamy wyjścia cyfrowego, w momencie wykrycia płomienia na płytce zap
 
 Kiedy używamy wejścia analogowego, za pomocą przetwornika analogowo-cyfrowego skonfigurowanego na odpowiednim pinie płytki NUCLEO odczytywana jest wartość napięcia z \textit{Analog Output} czujnika. Płytka została zaprogramowana tak, aby diody LD1, LD2 i LD3 zapalały się, kiedy odczytywane napięcie na wyjściu czujnika przekracza kolejno 1, 2.5 i 4.5 V. Działanie tego programu można zobaczyć na filmiku \cite{a2}. 
 
-Wyjście cyfrowe podłączono do pinu PE3 na płytce, natomiast wyjście analogowe do PA3 (aby była możliwość wykorzystania ADC, z ang. \textit{analog to digital converter}.)
+Wyjście cyfrowe podłączono do pinu PE3 na płytce, natomiast wyjście analogowe do PA3 (aby była możliwość wykorzystania ADC, z ang. \textit{analog to digital converter}.)\\
 
+Sprawdzono również zależność pomiędzy rezystancją a wrażliwością modułu poprzez zmierzenie napięcia na wyjściu analogowym w odległości 50cm od odbiornika do płomienia dla różnych oporności potencjometru, w sposób widoczny na zdjęciu poniżej. 
 
+\vspace{0.5cm}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{fig/KY-026/dzialanie_ukladu/pomiar.jpg}
+    \caption{Metoda pomiaru}
+    \label{sch}
+\end{figure}
+Sprawdzono napięcie dla rezystancji kolejno 50, 40, 30 i 20 kOhm. 
+
+\vspace{0.5cm}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig/KY-026/dzialanie_ukladu/50kohm.png}
+    \caption{50kOhm}
+    \label{sch}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig/KY-026/dzialanie_ukladu/40kohm.png}
+    \caption{40kOhm}
+    \label{sch}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig/KY-026/dzialanie_ukladu/30kohm.png}
+    \caption{30kOhm}
+    \label{sch}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig/KY-026/dzialanie_ukladu/20kohm.png}
+    \caption{20kOhm}
+    \label{sch}
+\end{figure}
+\clearpage
+
+Sprowadzając pomiary do wykresu można stwierdzić, że wrażliwość jest liniowo zależna od rezystancji potencjometru i można je opisać równaniem
+
+\[
+V = -0.1034 \cdot R + 5.512
+\] 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{fig/KY-026/dzialanie_ukladu/charak_RV_e.eps}
+    \caption{Charakterystyka zależności wrażliwości od rezystancji.}
+    \label{sch}
+\end{figure}
+
+Jest to liniowość, która występuje jednak w zakresie, gdzie czujnik nie jest nadmiernie wrażliwy. W przypadku za wysokiej wrażliwości wykrycie płomienia jest mało prawdopodobne, bo np. w słoneczny dzień sensor wykrywać będzie również promienie słoneczne. 
+\clearpage
 \printbibliography[heading=bibintoc]
 
 \end{document}
