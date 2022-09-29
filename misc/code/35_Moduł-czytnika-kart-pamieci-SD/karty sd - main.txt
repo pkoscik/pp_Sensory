@@ -1,0 +1,62 @@
+main.c
+
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "fatfs.h"
+#include "spi.h"
+#include "usart.h"
+#include "usb_otg.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "fatfs_sd.h"
+#include "string.h"
+#include "stdio.h"
+/* USER CODE END Includes */
+
+/* USER CODE BEGIN PV */
+FATFS fs;
+FATFS *pfs;
+FIL fil;
+FRESULT fres;
+DWORD fre_clust;
+uint32_t totalSpace, freeSpace;
+char buffer[1024];
+/* USER CODE END PV */
+
+/* USER CODE BEGIN Init */
+  void transmit_uart(char *string)
+    {
+    	uint8_t len=strlen(string);
+    	HAL_UART_Transmit(&huart3, (uint8_t*)string, len, 2000);
+    }
+/* USER CODE END Init */
+
+/* USER CODE BEGIN 2 */
+
+  fres = f_mount(&fs, "", 0);
+  if (fres == FR_OK){
+	  transmit_uart("Micro SD card is mounted succesfully! \r\n");
+  } else if (fres != FR_OK){
+	  transmit_uart("Micro SD card's mount error! \r\n");
+  }
+
+  fres = f_open(&fil, "logfile.txt", FA_OPEN_ALWAYS | FA_OPEN_APPEND | FA_WRITE | FA_READ);
+
+  fres = f_puts("Test 1234 $%^& \r\n", &fil);
+
+  transmit_uart("Written. \r\n");
+
+  fres = f_close(&fil);
+
+  fres = f_open(&fil, "logfile.txt", FA_READ);
+
+  f_gets(buffer, sizeof(buffer), &fil);
+
+  transmit_uart(buffer);
+
+  f_close(&fil);
+
+/* USER CODE END 2 */
+

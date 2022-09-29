@@ -1,0 +1,50 @@
+/* USER CODE BEGIN Includes */
+#include <string.h>
+#include "mpu6050.h"
+/* USER CODE END Includes */
+
+/* USER CODE BEGIN PV */
+int16_t acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z;
+float ax, ay, az, gx, gy, gz, temperature, roll, pitch;
+uint8_t buffer[128];
+/* USER CODE END PV */
+
+/* USER CODE BEGIN 2 */
+  MPU6050_Init(&hi2c1);
+
+    MPU6050_SetInterruptMode(MPU6050_INTMODE_ACTIVEHIGH);
+    MPU6050_SetInterruptDrive(MPU6050_INTDRV_PUSHPULL);
+    MPU6050_SetInterruptLatch(MPU6050_INTLATCH_WAITCLEAR);
+    MPU6050_SetInterruptLatchClear(MPU6050_INTCLEAR_STATUSREAD);
+
+    MPU6050_SetIntEnableRegister(0); // Disable all interrupts
+
+    // Enable Motion interrputs
+    MPU6050_SetDHPFMode(MPU6050_DHPF_5);
+
+    MPU6050_SetIntMotionEnabled(1);
+    MPU6050_SetIntZeroMotionEnabled(1);
+    MPU6050_SetIntFreeFallEnabled(1);
+
+    MPU6050_SetFreeFallDetectionDuration(2);
+    MPU6050_SetFreeFallDetectionThreshold(5);
+
+    MPU6050_SetMotionDetectionDuration(5);
+    MPU6050_SetMotionDetectionThreshold(2);
+
+    MPU6050_SetZeroMotionDetectionDuration(2);
+    MPU6050_SetZeroMotionDetectionThreshold(4);
+  /* USER CODE END 2 */
+
+/* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+	  MPU6050_GetAccelerometerScaled(&ax, &ay, &az);
+	  MPU6050_GetGyroscopeScaled(&gx, &gy, &gz);
+	  MPU6050_GetRollPitch(&roll, &pitch);
+	  HAL_Delay(100);
+  }
+  /* USER CODE END 3 */
