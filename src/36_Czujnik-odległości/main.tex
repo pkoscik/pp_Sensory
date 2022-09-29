@@ -20,8 +20,8 @@
 % \lab      -> NAZWA CZUJNIKA, np.: 'DHT22'
 % \comment  -> Króciutki opis co to, np.: 'Cyfrowy budżetowy czujnik temperatury'
 %
-\lab{Czujnik odległości}
-\comment{czujnik HY-SRF05}
+\lab{Czujnik ruchu}
+\comment{Moduł czujnika ruchu PIR HC-SR501 }
 \author{Adam Rewekant}
 
 % Absolutny zakaz dotykania tego tutaj bo jak dotkiecie to coś jebnie
@@ -40,11 +40,11 @@
 \begin{document}
 
 %% Strona tytułowa %%
-\mainpage{{fig/element/fig6}}
+\mainpage{{fig/element/mainfot}}
 
 \newpage
 \section*{Opis elementu} \addcontentsline{toc}{section}{Wstęp}
-Moduł czujnika odległości HY-SRF05 posiada nadajnik i odbiornik, które są przetwornikami ultradźwiękowe piezoelektrycznymi oraz moduł przetwarzania sygnałów, generujący impuls w momencie odbioru wiązki powracającej do czujnika po odbiciu od przeszkody.
+Moduł czujnika ruchu PIR HC-SR501 to czujnik promieniowania podczerwonego wykrywający ruch. Zasada działania tego czujnika, polega na generowaniu i wysyłaniu wiązki podczerwieni, która odbija się od przedmiotów, ludzi i zwierząt, które wykazują temperaturę wyższą od temperatury środowiska, w którym przebywają. Jeśli wiązka zostanie odbita w stronę czujnika, wówczas układ sterowania poda na wyjściu stan wysoki. 
 
 
 
@@ -53,14 +53,14 @@ Moduł czujnika odległości HY-SRF05 posiada nadajnik i odbiornik, które są p
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.5\linewidth]{fig/element/fig2.png}
-  \caption{HY-SRF05 \cite{fot2}}
+  \includegraphics[width=.6\linewidth]{fig/element/fot1.png}
+  \caption{HC-SR501 \cite{fot1}}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.5\linewidth]{fig/element/fig1.png}
-  \caption{HY-SRF05 \cite{fot2}}
+  \includegraphics[width=.8\linewidth]{fig/element/fot2.png}
+  \caption{HC-SR501 \cite{fot2}}
   \label{fig:sub2}
 \end{subfigure}
 \caption{Przykładowe zdjęcia czujnika.}
@@ -68,13 +68,22 @@ Moduł czujnika odległości HY-SRF05 posiada nadajnik i odbiornik, które są p
 \end{figure}
 \vspace{0.5cm}
 
-Wejście TRIG, służy mikrokontrolerowi jako rozpoczęcie nadawania wiązki ultradźwięków, uruchamiając jednocześnie odliczanie czasu do wykrycia impulsu powrotnego.
+Istnieje możliwość regulacji parametrów za pomocą potencjometrów:
 
+\begin{itemize}
+    \item T1 - czas trwania stanu wysokiego po wykryciu obiektu 
+    \item T2 - czułość czujnika (dystans, w którym wykrywa ruch obiektu)
+\end{itemize}
 
-\vspace{0.5cm}
+Czujnik posiada dwa tryby pracy, które wybierane są za pomocą zwarcia odpowiednich pinów:
+\begin{itemize}
+    \item retriggering - wyjście osiąga stan wysoki po wykryciu obiektu i jest on utrzymywany przez cały czas wykrywania trwającego ruchu, czujnik domyślnie znajduje się w tym trybie.
+    \item non-retriggering  - wyjście osiąga stan wysoki tylko raz po wykryciu obiektu, następnie przechodzi w stan niski niezależnie od tego, czy ruch dalej występuje.
+\end{itemize}
+
 \begin{figure}[h]
 \centering
-\includegraphics[width=.65\linewidth]{fig/element/fig3.png}
+\includegraphics[width=.62\linewidth]{fig/element/dzialanie.png}
 \caption{Budowa czujnika.\cite{fot3}}
 \label{fig:test}
 \end{figure}
@@ -86,85 +95,28 @@ Wejście TRIG, służy mikrokontrolerowi jako rozpoczęcie nadawania wiązki ult
 \vspace{0.5cm}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{fig/element/SRFkicad.png}
+    \includegraphics[width=\linewidth]{fig/element/PIRkicad.png}
     \caption{Połaczenie elektryczne}
     \label{fig:my_label}
 \end{figure}
 \vspace{0.5cm}
 
-Dobrym zastosowaniem dla modułu czujnika odległości jest budowanie map 2D pomieszczenia oraz wykrywanie przeszkód w otoczeniu np. robota autonomicznego. 
+Czujnik ruchu, wykorzystywany jest najczęściej do wykrywania obecności człowieka w pomieszczeniach w systemach alarmowych i oświetleniowych.
 
 \newpage
-\clearpage
 \section{Prezentacja działania układu}
 
 \vspace{0.5cm}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=.9\textwidth]{fig/element/foto1.png}
+    \includegraphics[width=0.8\textwidth]{fig/element/uklad.jpg}
     \caption{Zdjęcie układu.}
     \label{fig:my_label}
 \end{figure}
 
-\vspace{0.5cm}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth]{fig/element/dis5z.png}
-    \caption{Pomiar z odległości 5cm.}
-    \label{fig:my_label}
-\end{figure}
-
-\vspace{0.5cm}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth]{fig/element/dis5.png}
-    \caption{Wynik dla odległości 5cm.}
-    \label{fig:my_label}
-\end{figure}
-
-\newpage
-
-\vspace{0.5cm}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth]{fig/element/dis7z.png}
-    \caption{Pomiar z odległości 7cm.}
-    \label{fig:my_label}
-\end{figure}
-
-\vspace{0.5cm}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth]{fig/element/dis7.png}
-    \caption{Wynik dla odległości 7cm.}
-    \label{fig:my_label}
-\end{figure}
-
-\newpage
-
-\vspace{0.5cm}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=.9\textwidth]{fig/element/dis10z.png}
-    \caption{Pomiar z odległości 10cm.}
-    \label{fig:my_label}
-\end{figure}
-
-\vspace{0.5cm}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=.9\textwidth]{fig/element/dis10.png}
-    \caption{Wynik dla odległości 10cm.}
-    \label{fig:my_label}
-\end{figure}
-
-\vspace{1cm}
-
-Zakres pomiarowy czujnika to 2 cm - 400 cm. Jak widać po odpowienim przeliczeniu danych jakie zwraca czujnik, otrzymujemy odległość w mm. Błąd pomiarowy, który występuje jest znikomy dlatego czujniki te bardzo dobrze sprawdzają się we wcześniej wspomnianych zastosowaniach.\\
-
+Zakres pomiarowy czujnika to 7 metrów, a jego kąt widzenia wynosi do 100$^\circ$. Jak widać czujnik sygnalizuje wykrycie ruchu co świadczy o poprawnym działaniu układu.\\
 
 Działanie czujnika zostało zaprezentowane na krótkim wideo. \cite{youtube}.
-\clearpage
 \newpage
 \printbibliography[heading=bibintoc]
 

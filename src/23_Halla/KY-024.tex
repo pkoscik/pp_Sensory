@@ -45,7 +45,7 @@
 \newpage
 
 \section*{Opis elementu}
-Czujnik halla KY-024 to analogowo-cyfrowy sensor zbudowany z: dwóch diod LED - LD1 jest odpowiedzialna za sygnalizowanie zasilania całego układu a LD2 za sygnalizowanie wykrycia pola magnetycznego, potencjometru do regulacji czułości układu, 6 rezystorów, komparatora LM393 złożonego z dwóch wzmacniaczy operacyjnych i wysuniętego poza płytkę PCB liniowego czujnika Halla 49E. Cały układ bazuje na zjawisku magnetyzmu i pola magnetycznego, które przechodzi w danym kierunku przez sensor 49E. Czujniki tego typu znajdują zastosowanie w takich elementach jak: enkodery obrotowe, mierniki cęgowe, mangetyczne czujniki zbliżeniowe czy czujniki pozycji wału w silnikach elektrycznych.
+Czujnik Halla KY-024 to analogowo-cyfrowy moduł zbudowany z: dwóch diod LED - LD1 jest odpowiedzialna za sygnalizowanie zasilania całego układu a LD2 za sygnalizowanie wykrycia pola magnetycznego, potencjometru do regulacji czułości układu, 6 rezystorów, komparatora LM393 złożonego z dwóch wzmacniaczy operacyjnych i wysuniętego poza płytkę PCB liniowego czujnika Halla 49E. Cały układ bazuje na zjawisku magnetyzmu i pola magnetycznego, które przechodzi w danym kierunku przez sensor 49E. Czujniki tego typu znajdują zastosowanie w takich elementach jak: enkodery obrotowe, mierniki cęgowe, mangetyczne czujniki zbliżeniowe czy czujniki pozycji wału w silnikach elektrycznych.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%  TWO IMAGES SIDE BY SIDE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,8 +169,6 @@ Poniżej przedstawiono pomiary wyjścia cyfrowego i analogowego wykonane miernik
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%  TWO IMAGES SIDE BY SIDE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{\color{red}UWAGA: Przyłożenie niewłaściwego bieguna magnesu w trybie domyślnego stanu wysokiego skutkuje wygenerowaniem napięcia bliskiego napięciu zasilania na wyjściu DO, co może prowadzić do przeciążenia GPIO, gdy nie jest odporne na takie napięcia.}
-
 \vspace{0.25cm}
 \begin{figure}[h]
     \centering
@@ -249,7 +247,7 @@ Poniżej przedstawiono pomiary wyjścia cyfrowego i analogowego wykonane miernik
 
 \newpage
 
-W poniższym przykładzie użyto płytki rozwojowej STM32 NUCLEO-F767ZI. Układ połączeń przedstawiony na rysunku (\ref{fig:_polaczenie_ukladu}) oraz program dla płytki NUCLEO-F746ZG będzie identyczny. Do wykorzystania pełnej funkcjonalności czujnika wymagana jest konfiguracja dwóch pinów - jednego jako GPIO i drugiego jako ADC. Konfiguracja pliku \texttt{.IOC} i kod zawarte są w \texttt{Suplement \#2}.
+W poniższym przykładzie użyto płytki rozwojowej STM32 NUCLEO-F767ZI. Układ połączeń przedstawiony na rysunku (\ref{fig:_polaczenie_ukladu}) oraz program dla płytki NUCLEO-F746ZG będzie identyczny. Do wykorzystania pełnej funkcjonalności czujnika wymagana jest konfiguracja dwóch pinów - jednego jako GPIO i drugiego jako ADC. Kod zaimplementowany na mikroprocesorze zawarty jest w \texttt{Suplement \#1}.
 \vspace{0.25cm}
 \begin{figure}[H]
     \centering

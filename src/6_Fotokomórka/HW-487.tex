@@ -45,7 +45,7 @@
 \newpage
 
 \section*{Opis elementu}
-Optyczny czujnik szczelinowy (ang. photo interrupter) to cyfrowy sensor zbudowany z diody emitującej promieniowanie podczerwone (IR LED) oraz fototranzystora, który odbiera sygnał świetlny wysyłany przez tę diodę. Komponenty te umieszczone są po obu stronach obudowy w kształcie litery 'U' w taki sposób, aby możliwa była pomiędzy nimi komunikacja optyczna, co przedstawiono na rysunku (\ref{fig:_zasada_dzialania_elementu}). Czujniki tego typu znajdują zastosowanie w takich urządzeniach jak: drukarki i skanery, enkodery optyczne, przełączniki (switche) optyczne w nowoczesnych klawiaturach czy jako elementy włączników hotelowych, które zamykają obwód oświetlenia w pokoju po umieszczeniu w nich karty.
+Optyczny czujnik szczelinowy (ang. photo interrupter) to cyfrowy moduł zbudowany z diody emitującej promieniowanie podczerwone (IR LED) oraz fototranzystora, który odbiera sygnał świetlny wysyłany przez tę diodę. Komponenty te umieszczone są po przeciwnych stronach obudowy w kształcie litery 'U' w taki sposób, aby możliwa była pomiędzy nimi komunikacja optyczna, co przedstawiono na rysunku (\ref{fig:_zasada_dzialania_elementu}). Czujniki tego typu znajdują zastosowanie w takich urządzeniach jak: drukarki i skanery, enkodery optyczne, przełączniki (switche) optyczne w nowoczesnych klawiaturach czy jako elementy włączników hotelowych, które zamykają obwód oświetlenia w pokoju po umieszczeniu w nich karty.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%  TWO IMAGES SIDE BY SIDE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,7 +74,7 @@ Optyczny czujnik szczelinowy (ang. photo interrupter) to cyfrowy sensor zbudowan
 %%%%%%%%%%%%%%%%%%%%%%%%%  TWO IMAGES SIDE BY SIDE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \subsection{Opis modułu} REPLACE SUBSECTION WITH 1CM VSPACE
-Czujnik może być zasilany napięciami z zakresu $3,3V - 5V DC$. Schemat budowy wewnętrznej przedstawiono na rysunku (\ref{fig:_schemat_modulu}). Rezystor R2 pełni rolę ogranicznika prądu płynącego przez diodę. Rezystor R1 natomiast jest rezystorem podciągającym na linii sygnałowej. Jest wymagany, aby wyjście S znajdowało się w stanie wysokim, gdy do fototranzystora nie dociera światło z diody. W omawianym czujniku oba rezystory są wlutowane na PCB.
+Czujnik może być zasilany napięciami z zakresu $3,3V - 5V DC$. Schemat elektryczny przedstawiono na rysunku (\ref{fig:_schemat_modulu}). Rezystor R2 pełni rolę ogranicznika prądu płynącego przez diodę. Rezystor R1 natomiast jest rezystorem podciągającym na linii sygnałowej. Jest wymagany, aby wyjście S znajdowało się w stanie wysokim, gdy do fototranzystora nie dociera światło z diody. W omawianym czujniku oba rezystory są wlutowane na PCB.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%  TWO IMAGES SIDE BY SIDE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
@@ -103,7 +103,7 @@ Zasada działania oparta jest na pracy fototranzystora jako klucza/przełącznik
 \newpage
 
 \section{Użycie czujnika}
-Czujnik posiada 3 wyprowadzenia - dwa zasilające i jedno sygnałowe. Na rys. \ref{fig:_zdjecie_elementu} przedstawiono oznaczenia wyprowadzeń rzeczywistego czujnika. Działanie czujnika można zweryfikować z użyciem mikrokontrolera. W poniższym przykładzie użyto płytki rozwojowej STM32 NUCLEO-F767ZI. Układ połączeń przedstawiony na rysunku (\ref{fig:_polaczenie_ukladu}) oraz program dla płytki NUCLEO-F746ZG będzie identyczny. Kod skonfigurowano tak, aby po zablokowaniu szczeliny uruchamiana była wbudowana w płytkę mikrokontrolera dioda LD1.
+Czujnik posiada 3 wyprowadzenia - dwa zasilające i jedno sygnałowe. Na rys. \ref{fig:_zdjecie_elementu} przedstawiono oznaczenia wyprowadzeń rzeczywistego czujnika. Działanie czujnika można zweryfikować z użyciem mikrokontrolera. W poniższym przykładzie użyto płytki rozwojowej STM32 NUCLEO-F767ZI. Układ połączeń przedstawiony na rysunku (\ref{fig:_polaczenie_ukladu}) oraz program dla płytki NUCLEO-F746ZG będzie identyczny. Kod skonfigurowano tak, aby po zablokowaniu szczeliny uruchamiana była wbudowana w płytkę mikrokontrolera zielona dioda LD1.
 
 \vspace{0.25cm}
 \begin{figure}[h]
@@ -114,7 +114,7 @@ Czujnik posiada 3 wyprowadzenia - dwa zasilające i jedno sygnałowe. Na rys. \r
 \end{figure}
 \vspace{0.25cm}
 
-Poniżej zaprezentowano zdjęcia rzeczywistego układu w dwóch stanach. Konfiguracja pliku \texttt{.IOC} i kod zawarte są w \texttt{Suplement \#1}.
+Poniżej zaprezentowano zdjęcia rzeczywistego układu w dwóch stanach. Kod zaimplementowany na mikroprocesorze zawarty jest w \texttt{Suplement \#1}.
 
 % TUTAJ FOTY ODNOSNIE TEGO
 %%%%%%%%%%%%%%%%%%%%%%%%%  TWO IMAGES SIDE BY SIDE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
